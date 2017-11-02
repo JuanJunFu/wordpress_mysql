@@ -1,6 +1,3 @@
-We use mysql server and wordpress
-
-### Dock File
 FROM debian:wheezy
 
 RUN apt-get update && apt-get install -y \
@@ -53,14 +50,3 @@ COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 80
 CMD ["apache2", "-DFOREGROUND"]
-
-### Build 
-```sh
-docker build -t wordpress_mysql
-
-### Run
-```sh
-$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
-$ docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
-
-$ docker run --name some-wordpress --link some-mysql:mysql -p 80:80 -d wordpress
